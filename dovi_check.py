@@ -54,9 +54,13 @@ def main():
         if (parsedMediaInfoJSON.get('tracks')[0].get('file_extension') == 'mkv') or parsedMediaInfoJSON.get('tracks')[0].get('other_format') == 'Matroska':
             print(Back.LIGHTYELLOW_EX + Fore.BLACK + ' Warning ' + Fore.YELLOW + Back.BLACK + ' This video is in mkv/Matroska container might cause issues in DoVi detection on your TV' + '\n' + Style.RESET_ALL)
     
-    else:
+    else if DoViCheck():
         print(
-            '\n' + Back.LIGHTWHITE_EX + Fore.BLACK + ' ISSUE ' + Fore.LIGHTRED_EX + Back.BLACK + ' This video is not DoVi profile 5, might not work on TV' + Style.RESET_ALL + '\n')
+            '\n' + Back.LIGHTWHITE_EX + Fore.BLACK + ' ISSUE ' + Fore.LIGHTRED_EX + Back.BLACK + ' This video file is not DoVi profile 5, might not work on TV' + Style.RESET_ALL + '\n')
+
+    else:
+         print(
+            '\n' + Back.LIGHTWHITE_EX + Fore.BLACK + ' Skipped ' + Fore.LIGHTRED_EX + Back.BLACK + ' This video file is not DoVi' + Style.RESET_ALL + '\n')
 
 
 if __name__ == '__main__':
