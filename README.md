@@ -8,3 +8,9 @@ pip install pymediainfo colorama
 ```
 > **Warning** <br />
 > Running this on a mounted drive will force the whole file to be downloaded first
+
+If the only reason you're having issues is because it's in an mkv container use this to remux it in mp4
+
+```sh
+fmpeg -i <path/to/file>.mkv -map 0:v:0 -c copy -map 0:a:2 -c copy <target/file>.mp4
+```
