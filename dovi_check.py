@@ -18,8 +18,7 @@ def getFilePath() -> str:
 parsedMediaInfo = MediaInfo.parse(getFilePath())
 parsedMediaInfoJSON = json.loads(parsedMediaInfo.to_json())
 videoInfo = parsedMediaInfoJSON.get('tracks')[1]
-infoArr = ['format', 'format_profile', 'hdr_format', 'hdr_format_profile',
-           'hdr_format_settings', 'chroma_subsampling', 'codec_id']
+infoArr = ['format', 'format_profile', 'hdr_format', 'hdr_format_profile','hdr_format_settings', 'chroma_subsampling', 'codec_id']
 
 
 def getInfo(infoArr):
@@ -51,11 +50,10 @@ def main():
     getInfo(infoArr)
 
     if willThisRun():
-        print('\n' + Back.LIGHTCYAN_EX + Fore.BLACK + ' BASED ' + Fore.LIGHTGREEN_EX + Back.BLACK +
-              ' This video is DoVi profile 5 and is compatible with your TV' + Style.RESET_ALL + '\n')
+        print('\n' + Back.LIGHTCYAN_EX + Fore.BLACK + ' BASED ' + Fore.LIGHTGREEN_EX + Back.BLACK + ' This video is DoVi profile 5 and is compatible with your TV' + Style.RESET_ALL + '\n')
         if (parsedMediaInfoJSON.get('tracks')[0].get('file_extension') == 'mkv') or parsedMediaInfoJSON.get('tracks')[0].get('other_format') == 'Matroska':
-            print(Back.LIGHTYELLOW_EX + Fore.BLACK + ' Warning ' + Fore.YELLOW + Back.BLACK +
-                  ' This video is in mkv/Matroska container might cause issues in DoVi detection on your TV' + '\n' + Style.RESET_ALL)
+            print(Back.LIGHTYELLOW_EX + Fore.BLACK + ' Warning ' + Fore.YELLOW + Back.BLACK + ' This video is in mkv/Matroska container might cause issues in DoVi detection on your TV' + '\n' + Style.RESET_ALL)
+    
     else:
         print(
             '\n' + Back.LIGHTWHITE_EX + Fore.BLACK + ' ISSUE ' + Fore.LIGHTRED_EX + Back.BLACK + ' This video is not DoVi profile 5, might not work on TV' + Style.RESET_ALL + '\n')
