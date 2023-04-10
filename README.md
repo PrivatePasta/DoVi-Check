@@ -9,7 +9,7 @@ pip install pymediainfo colorama argparse
 ---
 ## **Usage:**
 ```shell
-python3 dovi_check.py /path/to/file [--remux/-r]
+python3 dovi_check.py [--remux/-r]
 ```
 If the video will not play on your LG TV, run the script again with the `--remux` flag and it will use ffmpeg to remux the .mkv file to .mp4 which *should* work. <br />
 
