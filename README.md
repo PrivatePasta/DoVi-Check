@@ -4,18 +4,16 @@
 Before running the script, install its dependencies
 
 ```sh 
-pip install pymediainfo colorama
+pip install pymediainfo colorama argparse
 ```
+---
+## **Usage:**
+```shell
+python3 dovi_check.py /path/to/file [--remux/-r]
+```
+If the video will not play on your LG TV, run the script again with the `--remux` flag and it will use ffmpeg to remux the .mkv file to .mp4 which *should* work. <br />
+
 > **Warning** <br />
 > Running this script on a mounted drive will force the whole file to be downloaded first
 
 ---
-
-> **Note** <br /> 
-> If the only reason you're having issues is because it's in an **mkv** container use this to remux it in **mp4**
-
-```sh
-# Just and exmaple, refer: https://trac.ffmpeg.org/wiki/Map to map whatever video and audio needs to in your target mp4 file
-# [-map] Used in situations when mp4 doesn't support some of the audio tracks from you mkv input
-fmpeg -i <path/to/file>.mkv -map 0:v:0 -c copy -map 0:a:2 -c copy <target/file>.mp4
-```

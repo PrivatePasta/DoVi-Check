@@ -1,6 +1,7 @@
 from pymediainfo import MediaInfo
 import os
 import json
+import argparse
 from colorama import Fore, Back, Style
 
 
@@ -52,8 +53,26 @@ def willThisRun() -> bool:
     else:
         return False
 
+def remux_file(input_file: str, output_file: str):
+    os.system(f"ffmpeg -i {input_file} -map 0:v:0 -c copy -map 0:a:2 -c copy {output_file}")
 
 def main():
+    parser = argparse.ArgumentParser(description='Dolby Vision profile 5 compatibility checker')
+    parser.add_argument('-r', '--remux', help='Remux the video file to mp4 format', action='store_true')
+    args = parser.parse_args()
+
+    if args.remux:
+        video_file = getFilePath()
+        if video_file.endswith('.mkv'):
+            output_file = input("Enter the path for output file (with .mp4 extension): ")
+            if not output_file.endswith('.mp4'):
+                output_file += '.mp4'
+            remux_file(video_file, output_file)
+            print(f"\n{Fore.GREEN}Video remuxed successfully!{Style.RESET_ALL}")
+        else:
+            print(f"\n{Fore.RED}Invalid file format! File must be in .mkv format.{Style.RESET_ALL}")
+        return
+
     print("\n")
     getInfo(infoArr)
 
